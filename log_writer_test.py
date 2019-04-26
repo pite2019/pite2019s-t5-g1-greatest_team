@@ -1,5 +1,5 @@
 import unittest
-from log_writer_good import LogWriter
+from log_writer import LogWriter
 import math
 
 class MyTest(unittest.TestCase):
