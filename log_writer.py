@@ -35,7 +35,23 @@ class LogWriter(object):
 		#
 		#e.g:
 		# insert_data_in_text("AAAA list BBBB", [1,2,3]) = "AAAA list ([1, 2, 3]) BBBB"
-		pass
+
+		words_in_text = text.split()
+		for i in len(words_in_text):
+			if words_in_text[i] == "list":
+				index = i
+				break
+
+		words_in_text.insert(index + 1, str(data))
+
+		new_word = ""
+		
+		for w in words_in_text:
+			new_word += str(w)
+
+		return new_word
+
+		
 
 	@staticmethod
 	def count_o(text):
