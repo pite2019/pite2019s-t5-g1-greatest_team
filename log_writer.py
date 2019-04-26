@@ -10,6 +10,7 @@ class LogWriter(object):
 		self.list_data = list_data
 		self.head_text = head_text
 		self.o_count = None
+		
 
 	@staticmethod
 	def get_every_second_element(data):
