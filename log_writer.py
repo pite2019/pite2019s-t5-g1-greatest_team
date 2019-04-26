@@ -11,6 +11,7 @@ class LogWriter(object):
 		self.head_text = head_text
 		self.o_count = None
 		
+		
 
 	@staticmethod
 	def get_every_second_element(data):
