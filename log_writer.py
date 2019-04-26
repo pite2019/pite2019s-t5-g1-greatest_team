@@ -23,7 +23,8 @@ class LogWriter(object):
 		#(use function get_every_second_element )
 		#e.g:
 		# avg_every_second_element([1,2,3,4]) == 3.0
-		pass
+		li = LogWriter.get_every_second_element(data)
+		return sum(li)/len(li)
 
 	@staticmethod
 	def insert_data_in_text(text, data):
