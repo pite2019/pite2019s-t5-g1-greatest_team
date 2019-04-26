@@ -67,8 +67,12 @@ class LogWriter(object):
 	@staticmethod
 	def what_is_your_quest(quest="holy grail"):
 		#8
+		self.quest = quest
+		return "To seek the {}".format(LogWriter.what_is_your_quest)
 		# if the argument is not specified return "To seek the holy grail"
 		# in other case append the texts "To seek the " with argument and return
+		
+		
 		pass
 
 	@staticmethod
