@@ -91,6 +91,16 @@ class LogWriter(object):
 		#Lastly if o_count is higher than seven append empty line and
 		#empty call of what_is_your_quest to the output.
 		#Return the output
+                result = "" 
+		if o_count_is_even():
+			result = what_is_added_the_meaning_of_life(self.o_count)
+		else:
+			result = what_is_your_quest(get_second_word(self.head_text))
+
+		if self.o_count > 7:
+			result = "\n" + what_is_your_quest()
+
+		return result
 		pass
 
 	@staticmethod
