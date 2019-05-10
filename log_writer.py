@@ -112,7 +112,10 @@ class LogWriter(object):
 		# x to the second power
 		# square root of x
 		# square root of the square root of x
-		pass
+		x_2nd_power = x ** 2
+		x_square_root = math.sqrt(x)
+		x_square_root_2 = math.sqrt(x_square_root)
+		return x_2nd_power + x_square_root + x_square_root_2
 
 	def get_second_part(self, computation=None):
 		#13
