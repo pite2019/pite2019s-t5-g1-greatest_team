@@ -25,7 +25,8 @@ class LogWriter(object):
 		#(use function get_every_second_element )
 		#e.g:
 		# avg_every_second_element([1,2,3,4]) == 3.0
-		pass
+		li = LogWriter.get_every_second_element(data)
+		return sum(li)/len(li)
 
 	@staticmethod
 	def insert_data_in_text(text, data):
@@ -41,11 +42,8 @@ class LogWriter(object):
 
 	@staticmethod
 	def count_o(text):
-		#4
-		#Count occurances of character 'o' in text
-		#e.g.:
-		# count_o("oOo0O00o") == 5
-		pass
+		small = text.lower()
+		return small.count("o")
 
 	def get_first_part(self):
 		#5
@@ -80,9 +78,10 @@ class LogWriter(object):
 		pass
 
 	def o_count_is_even(self):
-		#10
-		# return True if o_count is even
-		# return False is o_count is odd
+		if o_count % 2 == 0:
+		    return True
+		else:
+		    return False
 		pass
 
 	def get_movie_reference(self):
@@ -96,6 +95,16 @@ class LogWriter(object):
 		#Lastly if o_count is higher than seven append empty line and
 		#empty call of what_is_your_quest to the output.
 		#Return the output
+                result = "" 
+		if o_count_is_even():
+			result = what_is_added_the_meaning_of_life(self.o_count)
+		else:
+			result = what_is_your_quest(get_second_word(self.head_text))
+
+		if self.o_count > 7:
+			result = "\n" + what_is_your_quest()
+
+		return result
 		pass
 
 	@staticmethod
@@ -105,7 +114,10 @@ class LogWriter(object):
 		# x to the second power
 		# square root of x
 		# square root of the square root of x
-		pass
+		x_2nd_power = x ** 2
+		x_square_root = math.sqrt(x)
+		x_square_root_2 = math.sqrt(x_square_root)
+		return x_2nd_power + x_square_root + x_square_root_2
 
 	def get_second_part(self, computation=None):
 		#13
@@ -124,7 +136,7 @@ class LogWriter(object):
 		# - string "0 O 0 O 0 O 0 O 0 O 0 O"
 		# - output of get_second_part applied on computation method (class member)
 		#return the concatenation
-		pass
+		return self.get_first_part() + "0 O 0 O 0 O 0 O 0 O 0 O" + self.get_second_part(self.computation)
 
 	def __str__(self):
 		return self.combining_method()
