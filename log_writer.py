@@ -30,15 +30,13 @@ class LogWriter(object):
 
 	@staticmethod
 	def insert_data_in_text(text, data):
-		#3
-		#Find the occurance of word "list" in text (str).
-		#Assume that word "list" does not repeat in text.
-		#And put string form of data (str(data)) after that occurance.
-		#String form of data should be surrounded with parentheses "()".
-		#
-		#e.g:
-		# insert_data_in_text("AAAA list BBBB", [1,2,3]) = "AAAA list ([1, 2, 3]) BBBB"
-		pass
+		
+		list_as_string = str(data)
+		to_find = 'list'
+		index = text.find(to_find) + len(to_find)
+		output = text[:index] + ' (' + list_as_string + ')' + text[index:]
+
+		return output
 
 	@staticmethod
 	def count_o(text):
