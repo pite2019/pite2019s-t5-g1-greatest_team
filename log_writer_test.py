@@ -51,7 +51,7 @@ class MyTest(unittest.TestCase):
 		self.assertEqual(LogWriter.get_second_word("answers to questions"),"to")
 
 	def test_o_count_is_even(self):
-		tmp = self.test_instance.o_count
+		self.test_instance.o_count = 1
 		self.assertEqual(False, self.test_instance.o_count_is_even())
 		self.test_instance.o_count += 1
 		self.assertEqual(True, self.test_instance.o_count_is_even())
@@ -79,11 +79,12 @@ class MyTest(unittest.TestCase):
 		reference = self.test_instance.get_movie_reference()
 		self.assertEqual(self.test_instance.get_second_part(), reference)
 		self.assertEqual(
-			self.test_instance.get_second_part(computation= lambda x: x+3), 
+			self.test_instance.get_second_part(computation= lambda x: x+3),
 			reference+"\n"+str(50)
 			)
 
 	def test_combining_method(self):
 		combined_text = self.test_instance.combining_method()
-		total_text = "\n\t\tThe following list represents the total number of invisible unicorns in classroom.\n\t\t_________\n After change: \n\n\t\tThe following list ([1, 2, 3, 4]) represents the total number of invisible unicorns in classroom.\n\t\t0 O 0 O 0 O 0 O 0 O 0 O7.483314773547883\nTo seek the holy grail\n2218.473985099097"
+		print(self.test_instance.o_count)
+		total_text = "\n\t\tThe following list represents the total number of invisible unicorns in classroom.\n\t\t_________\n After change: \n\n\t\tThe following list ([1, 2, 3, 4]) represents the total number of invisible unicorns in classroom.\n\t\t0 O 0 O 0 O 0 O 0 O 0 OTo seek the following\n2218.473985099097"
 		self.assertEqual(total_text, combined_text)

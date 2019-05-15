@@ -1,4 +1,5 @@
 import math
+import re
 
 class LogWriter(object):
 
@@ -16,7 +17,7 @@ class LogWriter(object):
 		#1
 		# return every second element (counting from index 1) from passed list
 		# e.g. get_every_second_element([1,2,3,4]) == [2,4]
-		pass
+		return data[1::2]
 
 	@staticmethod
 	def avg_every_second_element(data):
@@ -39,18 +40,14 @@ class LogWriter(object):
 		#e.g:
 		# insert_data_in_text("AAAA list BBBB", [1,2,3]) = "AAAA list ([1, 2, 3]) BBBB"
 
-		words_in_text = text.split()
-		for i in len(words_in_text):
+		words_in_text = re.split(r'(\s+)', text)
+		for i in range(len(words_in_text)):
 			if words_in_text[i] == "list":
 				index = i
 				break
 
-		words_in_text.insert(index + 1, str(data))
-
-		new_word = ""
-		
-		for w in words_in_text:
-			new_word += str(w)
+		words_in_text.insert(index + 2, "(" + str(data) + ") ")
+		new_word = "".join(words_in_text)
 
 		return new_word
 
@@ -90,8 +87,7 @@ class LogWriter(object):
 	@staticmethod
 	def what_is_your_quest(quest="holy grail"):
 		#8
-		self.quest = quest
-		return "To seek the {}".format(LogWriter.what_is_your_quest)
+		return "To seek the "+quest
 		# if the argument is not specified return "To seek the holy grail"
 		# in other case append the texts "To seek the " with argument and return
 		
@@ -107,11 +103,10 @@ class LogWriter(object):
 		return second_word
 
 	def o_count_is_even(self):
-		if o_count % 2 == 0:
+		if self.o_count and self.o_count % 2 == 0:
 		    return True
 		else:
 		    return False
-		pass
 
 	def get_movie_reference(self):
 		#11
@@ -124,17 +119,16 @@ class LogWriter(object):
 		#Lastly if o_count is higher than seven append empty line and
 		#empty call of what_is_your_quest to the output.
 		#Return the output
-                result = "" 
-		if o_count_is_even():
-			result = what_is_added_the_meaning_of_life(self.o_count)
+		result = ""
+		if self.o_count_is_even():
+			result = str(LogWriter.what_is_added_the_meaning_of_life(self.o_count))
 		else:
-			result = what_is_your_quest(get_second_word(self.head_text))
+			result = str(LogWriter.what_is_your_quest(LogWriter.get_second_word(self.head_text)))
 
-		if self.o_count > 7:
-			result = "\n" + what_is_your_quest()
+		if self.o_count and self.o_count > 7:
+			result += "\n" + LogWriter.what_is_your_quest()
 
 		return result
-		pass
 
 	@staticmethod
 	def computation(x):
@@ -156,8 +150,10 @@ class LogWriter(object):
 		# - the value of function computation (in argument)
 		# applied on number 47
 		# to the output of get_movie_reference
-		str = get_movie_reference() + '\n'+ computation(47)
-		return str
+		res = self.get_movie_reference()
+		if computation:
+			res += '\n' + str(computation(47))
+		return res
 
 
 
@@ -168,7 +164,7 @@ class LogWriter(object):
 		# - string "0 O 0 O 0 O 0 O 0 O 0 O"
 		# - output of get_second_part applied on computation method (class member)
 		#return the concatenation
-		return self.get_first_part() + "0 O 0 O 0 O 0 O 0 O 0 O" + self.get_second_part(self.computation)
+		return self.get_first_part()[0] + "0 O 0 O 0 O 0 O 0 O 0 O" + self.get_second_part(self.computation)
 
 	def __str__(self):
 		return self.combining_method()
