@@ -55,8 +55,8 @@ class LogWriter(object):
 		str = ""
 		str = self.head_text + "_________" + "\n After change: \n"
 		str += self.insert_data_in_text(self.head_text, self.list_data)
-		o_count = self.count_o(str)
-		return (str,o_count)
+		self.o_count = self.count_o(str)
+		return (str,self.o_count)
 
 	@staticmethod
 	def what_is_added_the_meaning_of_life(add=None):
@@ -74,7 +74,10 @@ class LogWriter(object):
 		#8
 		# if the argument is not specified return "To seek the holy grail"
 		# in other case append the texts "To seek the " with argument and return
-		pass
+		if quest == "holy grail":
+			return "To seek the holy grail"
+		else:
+			return "To seek the " + quest
 
 	@staticmethod
 	def get_second_word(text):
@@ -85,7 +88,7 @@ class LogWriter(object):
 		return second_word
 
 	def o_count_is_even(self):
-		if o_count % 2 == 0:
+		if self.o_count % 2 == 0:
 		    return True
 		else:
 		    return False
@@ -102,14 +105,14 @@ class LogWriter(object):
 		#Lastly if o_count is higher than seven append empty line and
 		#empty call of what_is_your_quest to the output.
 		#Return the output
-                result = "" 
-		if o_count_is_even():
-			result = what_is_added_the_meaning_of_life(self.o_count)
+		result = "" 
+		if self.o_count_is_even():
+			result = self.what_is_added_the_meaning_of_life(self.o_count)
 		else:
-			result = what_is_your_quest(get_second_word(self.head_text))
+			result = self.what_is_your_quest(get_second_word(self.head_text))
 
 		if self.o_count > 7:
-			result = "\n" + what_is_your_quest()
+			result = "\n" + self.what_is_your_quest()
 
 		return result
 		pass
@@ -134,7 +137,8 @@ class LogWriter(object):
 		# - the value of function computation (in argument)
 		# applied on number 47
 		# to the output of get_movie_reference
-		pass
+		Ret = self.get_movie_reference() + '\n'+ str(computation(47))
+		return Ret
 
 	def combining_method(self):
 		#14
@@ -143,7 +147,7 @@ class LogWriter(object):
 		# - string "0 O 0 O 0 O 0 O 0 O 0 O"
 		# - output of get_second_part applied on computation method (class member)
 		#return the concatenation
-		return self.get_first_part() + "0 O 0 O 0 O 0 O 0 O 0 O" + self.get_second_part(self.computation)
+		return self.get_first_part()[0] + "0 O 0 O 0 O 0 O 0 O 0 O" + self.get_second_part(self.computation)
 
 	def __str__(self):
 		return self.combining_method()
