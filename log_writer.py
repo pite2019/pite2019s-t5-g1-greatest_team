@@ -88,6 +88,8 @@ class LogWriter(object):
 		return second_word
 
 	def o_count_is_even(self):
+		if self.o_count  == None:
+			return False
 		if self.o_count % 2 == 0:
 		    return True
 		else:
@@ -105,15 +107,15 @@ class LogWriter(object):
 		#Lastly if o_count is higher than seven append empty line and
 		#empty call of what_is_your_quest to the output.
 		#Return the output
-		result = "" 
+		result = ""
 		if self.o_count_is_even():
-			result = self.what_is_added_the_meaning_of_life(self.o_count)
+			result = str(self.what_is_added_the_meaning_of_life(self.o_count))
 		else:
-			result = self.what_is_your_quest(get_second_word(self.head_text))
-
+			result = self.what_is_your_quest(self.get_second_word(self.head_text))
+		if self.o_count  == None:
+			return result
 		if self.o_count > 7:
-			result = "\n" + self.what_is_your_quest()
-
+			result += "\n" + self.what_is_your_quest()
 		return result
 		pass
 
@@ -137,7 +139,10 @@ class LogWriter(object):
 		# - the value of function computation (in argument)
 		# applied on number 47
 		# to the output of get_movie_reference
-		Ret = self.get_movie_reference() + '\n'+ str(computation(47))
+		if computation != None:
+			Ret = self.get_movie_reference() + '\n'+ str(computation(47))
+		else:
+			Ret = self.get_movie_reference()
 		return Ret
 
 	def combining_method(self):
