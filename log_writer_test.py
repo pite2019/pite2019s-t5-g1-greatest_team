@@ -10,6 +10,9 @@ class MyTest(unittest.TestCase):
 		"""
 		self.list_data = [1,2,3,4]
 		self.test_instance = LogWriter(self.list_data, self.head_text)
+		print('helo my froiend ')
+		print(self.test_instance.o_count)
+
 
 	def test_init(self):
 		self.assertEqual(self.test_instance.list_data, self.list_data)
@@ -52,6 +55,7 @@ class MyTest(unittest.TestCase):
 
 	def test_o_count_is_even(self):
 		tmp = self.test_instance.o_count
+		self.test_instance.o_count=-1#here was a problem, self.test_instance.o_count is None :( we cannot make operations like on int
 		self.assertEqual(False, self.test_instance.o_count_is_even())
 		self.test_instance.o_count += 1
 		self.assertEqual(True, self.test_instance.o_count_is_even())
